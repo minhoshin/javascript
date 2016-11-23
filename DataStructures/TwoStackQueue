@@ -1,0 +1,32 @@
+function TwoStackQueue() {
+  this.inbox = [];
+  this.outbox = [];
+}
+
+TwoStackQueue.prototype.push = function (value) {
+  this.inbox.push(value);
+};
+
+TwoStackQueue.prototype.pop = function () {
+  if (!this.outbox.length) {
+    if (!this.inbox.length) {
+      return undefined;
+    }
+    while (this.inbox.length) {
+      this.outbox.push(this.inbox.pop());
+    }
+  }
+  return this.outbox.pop();
+};
+
+var twostackqueue = new TwoStackQueue();
+console.log(twostackqueue);
+
+twostackqueue.push('a');
+twostackqueue.push('b');
+twostackqueue.push('c');
+console.log(twostackqueue);
+
+twostackqueue.pop();
+twostackqueue.pop();
+console.log(twostackqueue);

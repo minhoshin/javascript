@@ -1,0 +1,31 @@
+class Queue {
+  constructor(){
+    this._oldestIndex = 1;
+    this._newestIndex = 1;
+    this._storage = {};
+  }
+  size(){
+    return this._newestIndex - this._oldestIndex;
+  }
+  enqueue(data){
+    this._storage[this._newestIndex] = data;
+    this._newestIndex++;
+  }
+  dequeue(){
+    delete this._storage[this._oldestIndex];
+    this._oldestIndex++;
+  }
+}
+
+var queue = new Queue();
+
+queue.enqueue('a');
+queue.enqueue('b');
+queue.enqueue('c');
+console.log(queue);
+console.log(queue.size());
+
+queue.dequeue();
+queue.dequeue();
+console.log(queue);
+console.log(queue.size());
